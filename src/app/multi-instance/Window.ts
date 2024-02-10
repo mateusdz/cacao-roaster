@@ -75,7 +75,7 @@ export default class CacaoWindow {
       'window__button button--settings button--small button--wholerow';
     settingsButton.innerHTML = `
         <div class="button__icon"></div>
-        <p class="button__label">user settings</p>
+        <p class="button__label">user settings :)</p>
         `;
     settingsButton.onclick = (e: Event) => {
       UserSettingsProps.instance.showDialog();
