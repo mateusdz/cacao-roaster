@@ -1,13 +1,10 @@
 {
-  "homepage": "https//mateusdz.github.io/cacao-roaster",
   "name": "cacao-roaster",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "prepare": "husky install",
     "prettier": "prettier '**/*.{js,jsx,ts,tsx}' --write",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
     "start": "webpack-dev-server --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
