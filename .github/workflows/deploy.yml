@@ -13,6 +13,7 @@ jobs:
     permissions:
       id-token: write
       pages: write
+      contents: write
 
     steps:
       - name: Checkout
@@ -27,9 +28,9 @@ jobs:
         run: |
           npm ci
           npm run build
-          
+      
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
         with: 
           folder: dist
           branch: gh-pages
