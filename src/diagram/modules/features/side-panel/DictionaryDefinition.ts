@@ -1,11 +1,10 @@
-import {
-  defaultType,
-  schemaDictWithoutCommands,
-} from '../../model/SchemaTypes';
+import { defaultType, schemaDictWithoutCommands } from '../../model/SchemaTypes';
 import PlaybookHandler from '../../model/PlaybookHandler';
 import { BasicInput } from './BasicInput';
 import { DefinitionInput } from './BasicInputs/DefinitionInput';
 import { ListInput } from './ListInput';
+import { v4 as uuidv4 } from 'uuid';
+import { MarkingTlp } from '../../../../../lib/cacao2-js/src/data-markings/MarkingTlp';
 
 /**
  * The class which handles the definition properties.
@@ -39,15 +38,20 @@ export class DictionaryDefinition extends ListInput {
 
   createBasicInput(name: string, value: object): BasicInput {
     if (Object.entries(value).length != 0) {
-      const [[key, val]] = Object.entries(value) as [[string, any]];
+      let [[key, val]] = Object.entries(value) as [[string, any]];
       if (val) {
         let defaultTypeValue: string = val.type;
+        key = val.type + '--' + uuidv4();
+        if (val.type.includes('marking-tlp')) {
+          val = new MarkingTlp(val);
+          key = val.id;
+        }
         if (!schemaDictWithoutCommands[val.type]) {
           defaultTypeValue = defaultType[this._propertyType];
         }
         return (this._definitionInput = new DefinitionInput(
           name,
-          value,
+          { [key]: val },
           this._playbookHandler,
           defaultTypeValue,
           this._callback,
