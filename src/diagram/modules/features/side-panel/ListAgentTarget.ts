@@ -47,10 +47,7 @@ export class ListAgentTarget extends ComplexInput {
     this._refreshFunction = refreshFunction;
     this._displayFunction = displayFunction;
     this._isAgent = isAgent;
-    this._bodyListContainer.classList.add(
-      'section__property',
-      'property--complexe',
-    );
+    this._bodyListContainer.classList.add('section__property', 'property--complexe');
     if (isAgent) {
       this._listType = 'agents-display';
       this._agentOrTarget = 'agent';
@@ -216,10 +213,7 @@ export class ListAgentTarget extends ComplexInput {
 
     //Creates the "cancel" button to go back
     this._agentTargetPanel.addButton('Cancel', () => {
-      this._agentTargetPanel.reloadClearedDifferentProperties(
-        this._listType,
-        this._tempValue,
-      );
+      this._agentTargetPanel.reloadClearedDifferentProperties(this._listType, this._tempValue);
       this._displayDefDialog.close();
       this._refreshFunction(this._tempValue);
     });
@@ -228,9 +222,7 @@ export class ListAgentTarget extends ComplexInput {
     this._agentTargetPanel.addButton('Confirm', () => {
       let sumitedValue = this._agentTargetPanel.submit();
       this._tempValue =
-        Object.keys(sumitedValue).length != 0
-          ? Object.values(sumitedValue)[0]
-          : undefined;
+        Object.keys(sumitedValue).length != 0 ? Object.values(sumitedValue)[0] : undefined;
       this._displayDefDialog.close();
       this._refreshFunction(this._tempValue);
     });

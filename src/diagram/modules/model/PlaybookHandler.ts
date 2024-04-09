@@ -507,6 +507,10 @@ export default class PlaybookHandler {
     return list;
   }
 
+  getAuthInfo(authInfoId: string) {
+    return this.playbook.authentication_info_definitions[authInfoId];
+  }
+
   getAgent(agentId: string) {
     return this.playbook.agent_definitions[agentId];
   }
@@ -521,6 +525,11 @@ export default class PlaybookHandler {
 
   removeTarget(targetId: string) {
     delete this.playbook.target_definitions[targetId];
+  }
+
+  setAuthInfo(authInfoId: string, value: any) {
+    delete this.playbook.authentication_info_definitions[authInfoId];
+    this.playbook.authentication_info_definitions[value[0]] = value[1];
   }
 
   setAgent(agentId: string, value: any) {
