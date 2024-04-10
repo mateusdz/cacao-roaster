@@ -42,6 +42,8 @@ export class DictionaryDefinition extends ListInput {
       if (val) {
         let defaultTypeValue: string = val.type;
         key = val.type + '--' + uuidv4();
+        console.log('Val type: ', val.type);
+        console.log('Val id: ', val.id);
         if (val.type.includes('marking-tlp')) {
           val = new MarkingTlp(val);
           key = val.id;

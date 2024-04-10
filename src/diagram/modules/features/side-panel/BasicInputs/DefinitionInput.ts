@@ -48,9 +48,7 @@ export class DefinitionInput extends BasicInput {
         this._value[element] = propertiesFunction[element]();
       }
     } else {
-      [[this._key, this._value]] = Object.entries(initialValue) as [
-        [string, any],
-      ];
+      [[this._key, this._value]] = Object.entries(initialValue) as [[string, any]];
       this._value = updateProperty(this._value);
     }
     this._playbookHandler = playbookHandler;
@@ -74,9 +72,7 @@ export class DefinitionInput extends BasicInput {
           (Object.values(this._initialValue)[0] as any)[field] &&
           (Object.values(this._initialValue)[0] as any)[field] != ''
         ) {
-          this._displayedValue = (Object.values(this._initialValue)[0] as any)[
-            field
-          ] as string;
+          this._displayedValue = (Object.values(this._initialValue)[0] as any)[field] as string;
           return true;
         }
       });
@@ -107,6 +103,8 @@ export class DefinitionInput extends BasicInput {
       this._isNew = false;
       Object.assign(tempValues, this._propertyPanel!.confirm());
       let typeValue = (tempValues as any)['type'];
+      console.log('Type value: ', typeValue);
+      console.log('temp values id: ', (tempValues as any)['id']);
       if (typeValue && typeValue != this._value['type']) {
         this._propertyType = typeValue;
         this._key = typeValue + '--' + uuidv4();
