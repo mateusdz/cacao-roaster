@@ -338,7 +338,7 @@ export const identifierReferences: { [key: string]: string } = {
   targets: 'target_definitions',
   'agents-display': 'agent_definitions',
   'targets-display': 'target_definitions',
-  'authentication-info-display': 'authentication_info_definitions',
+  // 'authentication-info-display': 'authentication_info_definitions',
   // 'authentication-info': 'authentication_info_definitions',
   on_failure: 'workflow',
   on_success: 'workflow',

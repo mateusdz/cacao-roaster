@@ -52,9 +52,6 @@ import { ExecutedStatus } from './ExecutedStatus';
 import CacaoUtils from '../../core/CacaoUtils';
 import { UneditableDateInput } from './BasicInputs/UneditableDateInput';
 import { Schema } from 'ajv';
-import { AuthenticationInfoInput } from './AuthenticationInfoInput';
-import { AuthInfoInput } from './BasicInputs/AuthInfoInput';
-import { ListOfAuthenticationInfo } from './ListInput/ListOfAuthenticationInfo';
 
 /**
  * A PropertyPanel is contained within the side panel of within a dialog.
@@ -559,22 +556,6 @@ export default class PropertyPanel {
       );
       labeledInput.setDefaultValues(defaultValues[propertyName]);
       this._elements.push(labeledInput);
-    } else if (propertyName == 'authentication_info') {
-      this.createLabeledInput(
-        propertyName,
-        propertyType,
-        container,
-        new AuthInfoInput(
-          propertyName,
-          defaultValues[propertyName],
-          this._playbookHandler,
-          'authentication-info',
-          () => {
-            this._playbookHandler.setPlaybookProperties(this.submit(), this._stepId);
-            this._notifyFunction();
-          },
-        ),
-      );
     } else if (propertyName == 'id') {
       let complexInput = new HiddenInput(propertyName, container);
       complexInput.setValue(defaultValues[propertyName]);
@@ -803,25 +784,6 @@ export default class PropertyPanel {
       });
       complexInput.setClearFunction(() => {
         this.reloadClearedDifferentProperties('targets-display', {});
-      });
-      this._elements.push(complexInput);
-    } else if (propertyType == 'authentication-info-display') {
-      let authInfoList = this._playbookHandler.getAllPropertyDict(
-        identifierReferences[propertyType],
-      );
-      let complexInput = new ListOfAuthenticationInfo(
-        propertyName,
-        propertyType,
-        authInfoList,
-        this._playbookHandler,
-        container,
-      );
-      complexInput.setDefaultValues(defaultValues);
-      complexInput.setReloadCallback(() => {
-        this.reloadClearedDifferentProperties(propertyType, this.submit()[propertyType]);
-      });
-      complexInput.setClearFunction(() => {
-        this.reloadClearedDifferentProperties(propertyType, {});
       });
       this._elements.push(complexInput);
     } else if (propertyType == 'string') {
