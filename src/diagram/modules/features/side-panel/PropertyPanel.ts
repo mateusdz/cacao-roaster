@@ -807,24 +807,21 @@ export default class PropertyPanel {
       this._elements.push(complexInput);
     } else if (propertyType == 'authentication-info-display') {
       let authInfoList = this._playbookHandler.getAllPropertyDict(
-        identifierReferences['authentication-info'],
+        identifierReferences[propertyType],
       );
       let complexInput = new ListOfAuthenticationInfo(
         propertyName,
-        'authentication-info',
+        propertyType,
         authInfoList,
         this._playbookHandler,
         container,
       );
       complexInput.setDefaultValues(defaultValues);
       complexInput.setReloadCallback(() => {
-        this.reloadClearedDifferentProperties(
-          'authentication-info-display',
-          this.submit()['authentication-info-display'],
-        );
+        this.reloadClearedDifferentProperties(propertyType, this.submit()[propertyType]);
       });
       complexInput.setClearFunction(() => {
-        this.reloadClearedDifferentProperties('authentication-info-display', {});
+        this.reloadClearedDifferentProperties(propertyType, {});
       });
       this._elements.push(complexInput);
     } else if (propertyType == 'string') {

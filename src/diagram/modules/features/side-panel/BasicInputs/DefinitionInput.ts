@@ -103,8 +103,6 @@ export class DefinitionInput extends BasicInput {
       this._isNew = false;
       Object.assign(tempValues, this._propertyPanel!.confirm());
       let typeValue = (tempValues as any)['type'];
-      console.log('Type value: ', typeValue);
-      console.log('temp values id: ', (tempValues as any)['id']);
       if (typeValue && typeValue != this._value['type']) {
         this._propertyType = typeValue;
         this._key = typeValue + '--' + uuidv4();

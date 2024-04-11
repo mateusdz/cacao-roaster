@@ -114,9 +114,7 @@ export class Playbook {
     }
     this.external_references = [];
     if (props.external_references) {
-      this.external_references = props.external_references.map(
-        refs => new ExternalReference(refs),
-      );
+      this.external_references = props.external_references.map(refs => new ExternalReference(refs));
     }
     this.markings = [];
     if (props.markings) {
@@ -142,8 +140,7 @@ export class Playbook {
     this.authentication_info_definitions = {};
     for (const id in props.authentication_info_definitions) {
       const auth = props.authentication_info_definitions[id];
-      this.authentication_info_definitions[id] =
-        AuthenticationInfoFactory.create(auth);
+      this.authentication_info_definitions[id] = AuthenticationInfoFactory.create(auth);
     }
     this.agent_definitions = {};
     for (const id in props.agent_definitions) {
@@ -170,9 +167,7 @@ export class Playbook {
     }
     this.signatures = [];
     if (props.signatures) {
-      this.signatures = props.signatures.map(
-        signature => new Signature(signature),
-      );
+      this.signatures = props.signatures.map(signature => new Signature(signature));
     }
   }
 
@@ -189,6 +184,15 @@ export class Playbook {
         this.workflow[id] = WorkflowStepFactory.create(step);
       }
       return true;
+    } else if (
+      prop === 'authentication_info_definitions' &&
+      props.authentication_info_definitions
+    ) {
+      this.authentication_info_definitions = {};
+      for (const id in props.authentication_info_definitions) {
+        const auth_info = props.authentication_info_definitions[id];
+        this.authentication_info_definitions[id] = auth_info;
+      }
     } else if (prop === 'agent_definitions' && props.agent_definitions) {
       this.agent_definitions = {};
       for (const id in props.agent_definitions) {
@@ -203,20 +207,14 @@ export class Playbook {
         this.target_definitions[id] = AgentTargetFactory.create(target);
       }
       return true;
-    } else if (
-      prop === 'extension_definitions' &&
-      props.extension_definitions
-    ) {
+    } else if (prop === 'extension_definitions' && props.extension_definitions) {
       this.extension_definitions = {};
       for (const id in props.extension_definitions) {
         const extension = props.extension_definitions[id];
         this.extension_definitions[id] = new ExtensionDefinition(extension);
       }
       return true;
-    } else if (
-      prop === 'data_marking_definitions' &&
-      props.data_marking_definitions
-    ) {
+    } else if (prop === 'data_marking_definitions' && props.data_marking_definitions) {
       this.data_marking_definitions = {};
       for (const id in props.data_marking_definitions) {
         let marking = props.data_marking_definitions[id];
@@ -231,15 +229,6 @@ export class Playbook {
         const extension = props.playbook_extensions[id];
         this.playbook_extensions[id] = extension;
       }
-    } else if (
-      prop === 'authentication_info_definitions' &&
-      props.authentication_info_definitions
-    ) {
-      this.authentication_info_definitions = {};
-      for (const id in props.authentication_info_definitions) {
-        const auth_info = props.authentication_info_definitions[id];
-        this.authentication_info_definitions[id] = auth_info;
-      }
     }
     return false;
   }
@@ -253,9 +242,7 @@ export class Playbook {
       ) {
         if (!this.updateObjectProperty(props, prop)) {
           if (Array.isArray(props[prop as keyof PlaybookProps])) {
-            (this as any)[prop] = Array.from(
-              props[prop as keyof PlaybookProps] as any,
-            );
+            (this as any)[prop] = Array.from(props[prop as keyof PlaybookProps] as any);
           } else {
             (this as any)[prop] = props[prop as keyof PlaybookProps];
           }

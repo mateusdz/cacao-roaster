@@ -91,6 +91,8 @@ import {
   Sector,
   SecurityCategory,
   Ssh,
+  SoarcaSsh,
+  SoarcaHttpApi,
 } from 'cacao2-js';
 
 // Command data
@@ -207,6 +209,8 @@ export const schemaDictAgentTarget: any = {
   sector: jsonSchemaSector,
   'security-category': jsonSchemaSecurityCategory,
   ssh: jsonSchemaSshAt,
+  'soarca-ssh': jsonSchemaSoarcaSsh,
+  'soarca-http-api': jsonSchemaSoarcaHttpApi,
 };
 
 // Maps Agent Target class and its subclasses to their respective JSON schemas
@@ -310,6 +314,8 @@ export const classDictAgentTarget: any = {
   sector: Sector,
   'security-category': SecurityCategory,
   ssh: Ssh,
+  'soarca-ssh': SoarcaSsh,
+  'soarca-http-api': SoarcaHttpApi,
 };
 
 export const keyNameDict: { [key: string]: string } = {
@@ -332,7 +338,8 @@ export const identifierReferences: { [key: string]: string } = {
   targets: 'target_definitions',
   'agents-display': 'agent_definitions',
   'targets-display': 'target_definitions',
-  'authentication-info': 'authentication_info_definitions',
+  'authentication-info-display': 'authentication_info_definitions',
+  // 'authentication-info': 'authentication_info_definitions',
   on_failure: 'workflow',
   on_success: 'workflow',
   on_completion: 'workflow',
@@ -430,12 +437,14 @@ export const commonTypeDict: { [key: string]: string } = {
   sector: 'agent-target',
   'security-category': 'agent-target',
   ssh: 'agent-target',
+  'soarca-ssh': 'agent-target',
+  'soarca-http-api': 'agent-target',
   'http-basic': 'authentication-info',
   oauth2: 'authentication-info',
   'user-auth': 'authentication-info',
 };
 
-export const addressTypes: string[] = ['ipv4', 'ipv6', 'l2mac', 'url', 'vlan'];
+export const addressTypes: string[] = ['ipv4', 'ipv6', 'l2mac', 'url', 'vlan', 'dname'];
 
 export const tlpv2_levels: string[] = [
   'TLP:RED',

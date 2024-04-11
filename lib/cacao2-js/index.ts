@@ -47,6 +47,8 @@ import { HttpBasic } from './src/authentication-info/HttpBasic';
 import { Oauth2 } from './src/authentication-info/Oauth2';
 import { UserAuth } from './src/authentication-info/UserAuth';
 import { AuthenticationInfo } from './src/authentication-info/AuthenticationInfo';
+import { SoarcaHttpApi } from './src/agent-target/SoarcaHttpApi';
+import { SoarcaSsh } from './src/agent-target/SoarcaSsh';
 
 export {
   AgentTarget,
@@ -98,4 +100,6 @@ export {
   Oauth2,
   UserAuth,
   AuthenticationInfo,
+  SoarcaHttpApi,
+  SoarcaSsh,
 };

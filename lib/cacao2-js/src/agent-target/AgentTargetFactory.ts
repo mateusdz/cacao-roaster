@@ -9,6 +9,8 @@ import { Organization, OrganizationProps } from './Organization';
 import { Sector, SectorProps } from './Sector';
 import { SecurityCategory, SecurityCategoryProps } from './SecurityCategory';
 import { Ssh, SshProps } from './Ssh';
+import { SoarcaSsh, SoarcaSshProps } from './SoarcaSsh';
+import { SoarcaHttpApi, SoarcaHttpApiProps } from './SoarcaHttpApi';
 
 export abstract class AgentTargetFactory {
   static create(props: Partial<AgentTargetProps>): AgentTarget {
@@ -33,6 +35,10 @@ export abstract class AgentTargetFactory {
         return new SecurityCategory(props as SecurityCategoryProps);
       case 'ssh':
         return new Ssh(props as SshProps);
+      case 'soarca-ssh':
+        return new SoarcaSsh(props as SoarcaSshProps);
+      case 'soarca-http-api':
+        return new SoarcaHttpApi(props as SoarcaHttpApiProps);
       default:
         return new AgentTarget(props as AgentTargetProps);
     }

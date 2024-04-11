@@ -225,12 +225,9 @@ export default class Soarca {
       JSON.stringify(CacaoUtils.filterEmptyValues(this._playbook)),
     );
     fetch(this._soarcaUrl + '/trigger/playbook', {
-      mode: 'cors',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        accept: 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify(CacaoUtils.filterEmptyValues(this._playbook)),
     })
